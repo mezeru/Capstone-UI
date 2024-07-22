@@ -11,16 +11,13 @@ export const Home = () => {
     const handleSubmit = async (e) =>{
         e.preventDefault();
 
-        const resp = await axiosDB.get("/login",{},{
-
-            headers:{
-                username: email,
-                password: pass
-            }
-
-        })
-
-        console.log(resp.data);
+        try {
+            const resp = await axiosDB.get("/Testcors");
+    
+            console.log(resp.data);
+        } catch (error) {
+            console.error("There was an error logging in!", error);
+        }
         
     }
 
@@ -34,7 +31,7 @@ export const Home = () => {
             <h2 className="text-center text-3xl font-semibold text-gray-800">Login</h2>
             <form onSubmit={handleSubmit} className="mt-8">
               <div>
-                <label htmlFor="email" className="block text-gray-700">Email Address</label>
+                <label htmlFor="email" className="block text-gray-700">Enter Username</label>
                 <input
                   id="email"
                   type="text"
@@ -46,7 +43,7 @@ export const Home = () => {
                 />
               </div>
               <div className="mt-4">
-                <label htmlFor="password" className="block text-gray-700">Password</label>
+                <label htmlFor="password" className="block text-gray-700">Enter Password</label>
                 <input
                   id="password"
                   type="password"
