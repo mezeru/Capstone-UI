@@ -6,18 +6,35 @@ export const Home = () => {
 
     const[email , setEmail] = useState("");
     const[pass, setPass] = useState("");
+    const[model,setModel] = useState({});
 
 
     const handleSubmit = async (e) =>{
         e.preventDefault();
 
-        try {
-            const resp = await axiosDB.get("/Testcors");
-    
+        let token = window.btoa(email+":"+pass);
+
+        try{
+
+            const resp = await axiosDB.get("/login",{
+                        headers:{
+                            'Authorization': 'Basic ' + token
+                        }
+                    });
+
+            setModel(resp.data);
+
             console.log(resp.data);
-        } catch (error) {
-            console.error("There was an error logging in!", error);
+
+
         }
+        catch(e){
+
+            console.log(e);
+
+        }
+
+        
         
     }
 
