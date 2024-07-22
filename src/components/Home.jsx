@@ -1,5 +1,6 @@
 
 import { useState } from "react"
+import axiosDB from "../axios";
 
 export const Home = () => {
 
@@ -7,8 +8,20 @@ export const Home = () => {
     const[pass, setPass] = useState("");
 
 
-    const handleSubmit = () =>{
-        console.log({email,pass});
+    const handleSubmit = async (e) =>{
+        e.preventDefault();
+
+        const resp = await axiosDB.get("/login",{},{
+
+            headers:{
+                username: email,
+                password: pass
+            }
+
+        })
+
+        console.log(resp.data);
+        
     }
 
         
@@ -24,7 +37,7 @@ export const Home = () => {
                 <label htmlFor="email" className="block text-gray-700">Email Address</label>
                 <input
                   id="email"
-                  type="email"
+                  type="text"
                   className="w-full px-4 py-2 mt-2 text-gray-700 bg-gray-200 border border-gray-300 rounded-md focus:border-indigo-500 focus:bg-white focus:outline-none"
                   placeholder="Enter your email address"
                   value={email}
