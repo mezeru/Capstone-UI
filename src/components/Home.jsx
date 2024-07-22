@@ -18,7 +18,6 @@ export const Home = () => {
                 
             });
 
-            setRole(resp.data.role);
 
         }
 
