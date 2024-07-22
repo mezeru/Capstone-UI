@@ -6,6 +6,7 @@ export const Home = () => {
 
     const[email , setEmail] = useState("");
     const[pass, setPass] = useState("");
+    const[role,setRole] = useState("")
     const[model,setModel] = useState({});
 
 
@@ -22,10 +23,13 @@ export const Home = () => {
                         }
                     });
 
+            setRole(resp.data.role)
+
             setModel(resp.data);
 
-            console.log(resp.data);
-
+            localStorage.setItem('token',token);
+            localStorage.setItem('user',email);
+            localStorage.setItem('role',role);
 
         }
         catch(e){
@@ -43,6 +47,9 @@ export const Home = () => {
    return (
 
     <>
+
+    {localStorage.getItem('role')}
+    
         <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
           <div className="max-w-md w-full px-6 py-8 bg-white rounded-lg shadow-md">
             <h2 className="text-center text-3xl font-semibold text-gray-800">Login</h2>
@@ -53,7 +60,7 @@ export const Home = () => {
                   id="email"
                   type="text"
                   className="w-full px-4 py-2 mt-2 text-gray-700 bg-gray-200 border border-gray-300 rounded-md focus:border-indigo-500 focus:bg-white focus:outline-none"
-                  placeholder="Enter your email address"
+                  placeholder="Enter your Username"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
