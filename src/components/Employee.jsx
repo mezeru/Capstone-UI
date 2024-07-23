@@ -20,8 +20,6 @@ export const Employee = () => {
 
             localStorage.setItem('id',resp.data.id);
 
-            console.log(resp);
-
         }
 
         getEmployeeData();

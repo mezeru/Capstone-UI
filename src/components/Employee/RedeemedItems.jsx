@@ -17,7 +17,6 @@ export const RedeemedItems = () => {
 
             setItem(resp.data);
 
-            console.log(resp.data);
         }
 
         getItems();
