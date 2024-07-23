@@ -15,7 +15,7 @@ export const AddNew = () => {
       case "3":
         return <NewItem />;
       default:
-        return null;
+        ;
     }
   };
 
