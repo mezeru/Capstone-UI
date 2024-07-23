@@ -34,6 +34,7 @@ export const Home = () => {
             localStorage.setItem('user',email);
             localStorage.setItem('name',resp.data.name);
             localStorage.setItem('role',role);
+            localStorage.setItem('userid',resp.data.id)
 
 
             switch (resp.data?.role) {
