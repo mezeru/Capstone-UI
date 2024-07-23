@@ -31,8 +31,6 @@ export const Home = () => {
 
 
             localStorage.setItem('token',token);
-            localStorage.setItem('user',email);
-            localStorage.setItem('name',resp.data.name);
             localStorage.setItem('role',role);
             localStorage.setItem('userid',resp.data.id)
 

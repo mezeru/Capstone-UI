@@ -18,6 +18,8 @@ export const Employee = () => {
 
             setEmployee(resp.data);
 
+            localStorage.setItem('id',resp.data.id);
+
             console.log(resp);
 
         }
@@ -34,7 +36,7 @@ export const Employee = () => {
             <h1 className="mb-20 text-white text-3xl font-bold">Current Points : {employee.points}</h1>
             <div className="max-w-md flex flex-row w-full px-6 py-8 bg-white rounded-lg shadow-md">
 
-                <Link to="/Employee/Redeem" className="font-bold m-5 bg-green-500 hover:bg-green-700 text-white py-2 px-4 rounded">
+                <Link to="/Employee/redeemed" className="font-bold m-5 bg-green-500 hover:bg-green-700 text-white py-2 px-4 rounded">
                         View Redeemed Items
                 </Link>
                 <Link to="/Employee/newItem" className="font-bold m-5 bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">
