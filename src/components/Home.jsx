@@ -1,17 +1,21 @@
 
 import { useState } from "react"
+import { useNavigate } from 'react-router-dom';
 import axiosDB from "../axios";
 
 export const Home = () => {
 
+    const nav = useNavigate();
+
     const[email , setEmail] = useState("");
     const[pass, setPass] = useState("");
-    const[role,setRole] = useState("")
-    const[model,setModel] = useState({});
+    const[role,setRole] = useState("");
 
 
     const handleSubmit = async (e) =>{
         e.preventDefault();
+
+        
 
         let token = window.btoa(email+":"+pass);
 
@@ -25,11 +29,28 @@ export const Home = () => {
 
             setRole(resp.data.role)
 
-            setModel(resp.data);
 
             localStorage.setItem('token',token);
             localStorage.setItem('user',email);
+            localStorage.setItem('name',resp.data.name);
             localStorage.setItem('role',role);
+
+
+            switch (resp.data?.role) {
+                case "HR":
+                  nav("/HR")
+                  break;
+                case "EMPLOYEE":
+                  console.log("EMPLOYEE logged IN");
+                  break;
+                case "MANAGER":
+                  console.log("MANAGER logged IN");
+                  break;
+                default:
+                  break;
+              }
+
+            
 
         }
         catch(e){
