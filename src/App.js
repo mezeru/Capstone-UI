@@ -5,6 +5,8 @@ import { Home } from './components/Home';
 import {HR} from './components/HR';
 import { AddNew } from './components/AddNew';
 import { AllEmployees } from './components/AllEmployees';
+import { Employee } from './components/Employee';
+import { RedeemNew } from './components/Employee/RedeemNew';
 
 function App() {
   return (
@@ -13,9 +15,11 @@ function App() {
         <Routes>
           
           <Route index path='/HR/assign' element={<AllEmployees />} />
-          <Route index path='/HR/add' element={<AddNew />} />
-          <Route index path='/HR' element={<HR />} />
-          <Route index path='/' element={<Home />} />
+          <Route  path='/HR/add' element={<AddNew />} />
+          <Route path='/HR' element={<HR />} />
+          <Route path='/Employee/newItem' element={<RedeemNew/>} />
+          <Route path='/Employee' element={<Employee/>} />
+          <Route path='/' element={<Home />} />
           
         </Routes>
       </BrowserRouter>
