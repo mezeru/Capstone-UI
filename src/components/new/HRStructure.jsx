@@ -23,7 +23,7 @@ export const HRStruct = () => {
         <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 p-10">
             <h1 className="mb-20 text-white text-5xl font-bold">Manager and Employee Strucutre</h1>
             <div className="text-sm w-full bg-gray-800 rounded-t-lg font-medium text-center text-gray-500 border-b border-gray-200 py-1 px-1">
-                <ul className="flex flex-wrap -mb-px">
+                <ul className="flex flex-wrap -mb-px overflow-x-auto ">
                     {struct.map((manager, index) => (
                         <li key={manager.id} className="me-2">
                             <button
@@ -44,7 +44,7 @@ export const HRStruct = () => {
                 {struct.length > 0 && struct[activeTab] && (
                     <div>
                         <h2 className="text-4xl font-bold mb-4">{struct[activeTab].name}</h2>
-                        <h3 className="text-2xl font-semibold mb-5">Employees</h3>
+                        
                         <div>
                         <div className="grid grid-cols-3 gap-6">
                             {struct[activeTab].employees.length > 0 ? (

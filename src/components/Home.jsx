@@ -43,7 +43,7 @@ export const Home = () => {
                   nav("/Employee")
                   break;
                 case "MANAGER":
-                  console.log("MANAGER logged IN");
+                  nav("/Manager")
                   break;
                 default:
                   break;

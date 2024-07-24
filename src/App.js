@@ -3,12 +3,13 @@ import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Home } from './components/Home';
 import {HR} from './components/HR';
-import { AddNew } from './components/AddNew';
+import { AddNew } from './components/new/AddNew';
 import { AllEmployees } from './components/new/AllEmployees';
 import { Employee } from './components/Employee';
 import { RedeemNew } from './components/Employee/RedeemNew';
 import { RedeemedItems } from './components/Employee/RedeemedItems';
 import { HRStruct } from './components/new/HRStructure';
+import { Manager } from './components/Manager';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route  path='/HR/Structure' element={<HRStruct />} />
           
           <Route path='/HR' element={<HR />} />
+          <Route path='/Manager' element={<Manager />} />
           <Route path='/Employee/redeemed' element={<RedeemedItems/>} />
           <Route path='/Employee/newItem' element={<RedeemNew/>} />
           <Route path='/Employee' element={<Employee/>} />

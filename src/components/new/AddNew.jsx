@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { NewManager } from "./new/newManager";
-import { NewEmployee } from "./new/newEmployee";
-import { NewItem } from "./new/newItem";
+import { NewManager } from "./newManager";
+import { NewEmployee } from "./newEmployee";
+import { NewItem } from "./newItem";
 
 export const AddNew = () => {
   const [select, setSelect] = useState("");
