@@ -133,7 +133,7 @@ export const AllEmployees = () => {
               </thead>
               <tbody className="bg-white border-none">
                 {employees.map((employee) => (
-                  <tr key={employee.id} onClick={() => handleEmployeeClick(employee)} className="cursor-pointer hover:border hover:border-1">
+                  <tr key={employee.id} onClick={() => handleEmployeeClick(employee)} className="cursor-pointer border-2 border-gray-700 hover:border-white">
                     <td className="px-6 py-4 whitespace-no-wrap bg-gray-700 border-gray-500">
                       <div className="flex items-center justify-center">
                         <div>
