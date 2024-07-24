@@ -8,6 +8,7 @@ import { AllEmployees } from './components/AllEmployees';
 import { Employee } from './components/Employee';
 import { RedeemNew } from './components/Employee/RedeemNew';
 import { RedeemedItems } from './components/Employee/RedeemedItems';
+import { HRStruct } from './components/new/HRStructure';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           
           <Route index path='/HR/assign' element={<AllEmployees />} />
           <Route  path='/HR/add' element={<AddNew />} />
+          <Route  path='/HR/Structure' element={<HRStruct />} />
           <Route path='/HR' element={<HR />} />
           <Route path='/Employee/redeemed' element={<RedeemedItems/>} />
           <Route path='/Employee/newItem' element={<RedeemNew/>} />
