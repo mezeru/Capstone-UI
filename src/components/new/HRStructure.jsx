@@ -14,7 +14,6 @@ export const HRStruct = () => {
             });
 
             setStruct(resp.data);
-            console.log(resp.data);
         };
 
         getStruct();

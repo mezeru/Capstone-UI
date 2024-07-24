@@ -19,7 +19,6 @@ export const HR = () => {
 
             setUser(resp.data);
 
-            console.log(resp);
 
         }
 
@@ -35,7 +34,7 @@ export const HR = () => {
                 <Link to="/HR/add" className="m-5 bg-green-500 hover:bg-green-700 text-white py-2 px-4 rounded">
                     Add New +
                 </Link>
-                <Link to="/HR/Assign" className="m-5 bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">
+                <Link to="/HR/Reassign" className="m-5 bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">
                     Assign Manager to Employee
                 </Link>
                 <Link to="/HR/Structure" className="m-5 bg-yellow-500 hover:bg-yellow-700 text-white py-2 px-4 rounded">
