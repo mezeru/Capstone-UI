@@ -65,6 +65,8 @@ export const NewManager = () => {
                   required
                 />
               </div>
+              <label htmlFor="username" className="block mt-10 mb-4 text-center text-3xl font-bold text-gray-700">Employee Credentials</label>
+        
               <div className="mt-4">
                 <label htmlFor="name" className="block text-left text-md text-gray-700">Enter Username</label>
                 <input

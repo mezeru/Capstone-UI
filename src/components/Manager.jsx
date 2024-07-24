@@ -36,7 +36,7 @@ export const Manager = () => {
                 <Link to="/Manager/view" className="m-5 bg-green-500 hover:bg-green-700 text-white py-2 px-4 rounded">
                     View Employees under Supervison/ Add Points
                 </Link>
-                <Link to="/HR/Reassign" className="m-5 bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">
+                <Link to="/Manger/history" className="m-5 bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">
                     View History of Points Rewarded 
                 </Link>
                 </div>

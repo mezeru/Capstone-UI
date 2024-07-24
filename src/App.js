@@ -11,6 +11,7 @@ import { RedeemedItems } from './components/Employee/RedeemedItems';
 import { HRStruct } from './components/new/HRStructure';
 import { Manager } from './components/Manager';
 import { EmpSuper } from './components/Manager/EmpSuper';
+import { ReviewHistory } from './components/Manager/ReviewHistory';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path='/HR' element={<HR />} />
 
           <Route path='/Manager/view' element={<EmpSuper />} />
+          <Route path='/Manger/history' element={<ReviewHistory />} />
           <Route path='/Manager' element={<Manager />} />
           <Route path='/Employee/redeemed' element={<RedeemedItems/>} />
           <Route path='/Employee/newItem' element={<RedeemNew/>} />

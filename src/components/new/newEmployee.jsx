@@ -75,7 +75,7 @@ export const NewEmployee = () => {
             required
           />
         </div>
-        <div>
+        <div className="mt-4">
             <label htmlFor="salary" className="block text-left text-md text-gray-700">Enter Salary</label>
             <input
                 id="salary"
@@ -87,56 +87,62 @@ export const NewEmployee = () => {
                 required
             />
         </div>
+
         <div className="mt-4">
-          <label htmlFor="username" className="block text-left text-md text-gray-700">Enter Username</label>
-          <input
-            id="username"
-            type="text"
-            className="w-full px-4 py-2 mt-2 text-gray-700 bg-gray-200 border border-gray-300 rounded-md focus:border-indigo-500 focus:bg-white focus:outline-none"
-            placeholder="Enter Username"
-            value={user}
-            onChange={(e) => setUser(e.target.value)}
-            required
-          />
+              <label htmlFor="manager" className="block text-left text-md text-gray-700">Assign Manager</label>
+              <select
+                id="manager"
+                value={selectManager}
+                onChange={(e) => setSelectManager(e.target.value)}
+                className="w-full px-4 py-2 mt-2 text-gray-700 bg-gray-200 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 block"
+              >
+                <option value="">Select a Manager</option>
+                {managers.map((manager) => (
+                  <option key={manager.id} value={manager.id}>{manager.name}</option>
+                ))}
+              </select>
         </div>
-        <div className="mt-4">
-          <label htmlFor="password" className="block text-left text-md text-gray-700">Enter Password</label>
-          <input
-            id="password"
-            type="password"
-            className="w-full px-4 py-2 mt-2 text-gray-700 bg-gray-200 border border-gray-300 rounded-md focus:border-indigo-500 focus:bg-white focus:outline-none"
-            placeholder="Enter Password"
-            value={pass}
-            onChange={(e) => setPass(e.target.value)}
-            required
-          />
-        </div>
-        <div className="mt-4">
-          <label htmlFor="repassword" className="block text-left text-md text-gray-700">Confirm Password</label>
-          <input
-            id="repassword"
-            type="password"
-            className="w-full px-4 py-2 mt-2 text-gray-700 bg-gray-200 border border-gray-300 rounded-md focus:border-indigo-500 focus:bg-white focus:outline-none"
-            placeholder="Confirm Password"
-            value={repass}
-            onChange={(e) => setRepass(e.target.value)}
-            required
-          />
-        </div>
-        <div className="mt-4">
-          <label htmlFor="manager" className="block text-left text-md text-gray-700">Select Manager</label>
-          <select
-            id="manager"
-            value={selectManager}
-            onChange={(e) => setSelectManager(e.target.value)}
-            className="w-full px-4 py-2 mt-2 text-gray-700 bg-gray-200 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 block"
-          >
-            <option value="">Select a Manager</option>
-            {managers.map((manager) => (
-              <option key={manager.id} value={manager.id}>{manager.name}</option>
-            ))}
-          </select>
-        </div>
+
+        <label htmlFor="username" className="block mt-10 mb-4 text-center text-3xl font-bold text-gray-700">Employee Credentials</label>
+              
+
+            <div className="mt-4">
+              <label htmlFor="username" className="block text-left text-md text-gray-700">Enter Username</label>
+              <input
+                id="username"
+                type="text"
+                className="w-full px-4 py-2 mt-2 text-gray-700 bg-gray-200 border border-gray-300 rounded-md focus:border-indigo-500 focus:bg-white focus:outline-none"
+                placeholder="Enter Username"
+                value={user}
+                onChange={(e) => setUser(e.target.value)}
+                required
+              />
+            </div>
+            <div className="mt-4">
+              <label htmlFor="password" className="block text-left text-md text-gray-700">Enter Password</label>
+              <input
+                id="password"
+                type="password"
+                className="w-full px-4 py-2 mt-2 text-gray-700 bg-gray-200 border border-gray-300 rounded-md focus:border-indigo-500 focus:bg-white focus:outline-none"
+                placeholder="Enter Password"
+                value={pass}
+                onChange={(e) => setPass(e.target.value)}
+                required
+              />
+            </div>
+            <div className="mt-4">
+              <label htmlFor="repassword" className="block text-left text-md text-gray-700">Confirm Password</label>
+              <input
+                id="repassword"
+                type="password"
+                className="w-full px-4 py-2 mt-2 text-gray-700 bg-gray-200 border border-gray-300 rounded-md focus:border-indigo-500 focus:bg-white focus:outline-none"
+                placeholder="Confirm Password"
+                value={repass}
+                onChange={(e) => setRepass(e.target.value)}
+                required
+              />
+            </div>
+            
         <div className="mt-6">
           <button
             type="submit"
