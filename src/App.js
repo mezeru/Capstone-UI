@@ -12,6 +12,7 @@ import { HRStruct } from './components/new/HRStructure';
 import { Manager } from './components/Manager';
 import { EmpSuper } from './components/Manager/EmpSuper';
 import { ReviewHistory } from './components/Manager/ReviewHistory';
+import {PointsHistory} from './components/Employee/PointsHistory';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path='/Manager' element={<Manager />} />
           <Route path='/Employee/redeemed' element={<RedeemedItems/>} />
           <Route path='/Employee/newItem' element={<RedeemNew/>} />
+          <Route path='/Employee/pointsHistory' element={<PointsHistory/>} />
           <Route path='/Employee' element={<Employee/>} />
           <Route path='/' element={<Home />} />
           

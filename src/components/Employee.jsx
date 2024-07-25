@@ -29,22 +29,36 @@ export const Employee = () => {
                 <h1 className="text-4xl font-bold text-center text-purple-700 mb-6">Welcome, {employee.name}</h1>
                 <div className="text-center mb-4">
                     <p className="text-xl text-gray-700"><strong>Manager:</strong> {employee.manager?.name}</p>
-                    <p className="text-xl text-gray-700"><strong>Salary:</strong> {employee.salary}</p>
+                    <p className="text-xl text-gray-700"><strong>Salary:</strong> <span className="font-bold">$</span> {employee.salary}</p>
                     <p className="text-xl text-gray-700"><strong>Current Points:</strong> {employee.points}</p>
                 </div>
-                <div className="flex justify-center space-x-4 mt-6">
-                    <Link
-                        to="/Employee/redeemed"
-                        className="bg-green-500 hover:bg-green-700 text-white py-2 px-4 rounded shadow"
-                    >
-                        View Redeemed Items
-                    </Link>
-                    <Link
-                        to="/Employee/newItem"
-                        className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded shadow"
-                    >
-                        Redeem a New Item
-                    </Link>
+                <div className="flex flex-col justify-center space-x-4 mt-6">
+                    <div>
+                        <Link
+                            to="/Employee/redeemed"
+                            className="bg-green-500 m-2 hover:bg-green-700 text-white py-2 px-4 rounded shadow"
+                        >
+                            View Redeemed Items
+                        </Link>
+                        <Link
+                            to="/Employee/newItem"
+                            className="bg-blue-500 m-2 hover:bg-blue-700 text-white py-2 px-4 rounded shadow"
+                        >
+                            Redeem a New Item
+                        </Link>
+                    </div>
+
+                    <div className="mt-8">
+                        <Link
+                            to="/Employee/pointshistory"
+                            className="bg-yellow-500 hover:bg-yellow-700 text-white py-2 px-4 rounded shadow"
+                        >
+                            View Points History
+                        </Link>
+
+                    </div>
+
+                    
                 </div>
             </div>
         </div>

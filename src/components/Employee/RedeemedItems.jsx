@@ -13,7 +13,9 @@ export const RedeemedItems = () => {
                     }
                 });
 
-                setItems(resp.data);
+                const data = resp.data.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
+
+                setItems(data);
             } catch (error) {
                 console.error("Error fetching redeemed items:", error);
             }
@@ -31,9 +33,10 @@ export const RedeemedItems = () => {
                 items.map((item) => (
                     <div key={item.id} className="flex flex-col justify-between p-6 bg-gray-800 rounded-lg shadow-md text-white">
                         <div className="mb-5">
-                            <h1 className="text-3xl font-bold mb-2">{item.name}</h1>
-                            <p className="text-lg mb-2">{item.description}</p>
-                            <p className="text-lg font-semibold">Points: {item.points}</p>
+                            <h1 className="text-3xl font-bold mb-2">{item.item.name}</h1>
+                            <p className="text-lg mb-2">{item.item.description}</p>
+                            <p className="text-lg font-semibold">Points: {item.item.points}</p>
+                            <p className="text-lg font-semibold"> {new Date(item.timestamp).toLocaleString()}</p>
                         </div>
                     </div>
                 ))
