@@ -10,6 +10,7 @@ export const Home = () => {
     const[email , setEmail] = useState("");
     const[pass, setPass] = useState("");
     const[role,setRole] = useState("");
+    const[invalid,setInvalid] = useState("");
 
 
     const handleSubmit = async (e) =>{
@@ -54,7 +55,7 @@ export const Home = () => {
         }
         catch(e){
 
-            console.log(e);
+          setInvalid("Invalid Credentials Entered")
 
         }
 
@@ -73,6 +74,8 @@ export const Home = () => {
         <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
           <div className="max-w-md w-full px-6 py-8 bg-white rounded-lg shadow-md">
             <h2 className="text-center text-3xl font-semibold text-gray-800">Login</h2>
+            {invalid.length === 0 ? "":  <p className="mt-5 p-2 bg-red-500 rounded-lg text-white">{invalid}</p>}
+           
             <form onSubmit={handleSubmit} className="mt-8">
               <div>
                 <label htmlFor="email" className="block text-gray-700">Enter Username</label>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axiosDB from "../../axios";
+import { EmpNav } from "./EmpNav";
 
 export const RedeemNew = () => {
     const [items, setItems] = useState([]);
@@ -57,6 +58,8 @@ export const RedeemNew = () => {
     };
 
     return (
+        <>
+        <EmpNav />
         <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 p-10">
             <h1 className="mb-20 text-white text-5xl font-bold">Redeem a new Item</h1>
 
@@ -81,5 +84,6 @@ export const RedeemNew = () => {
                 ))}
             </div>
         </div>
+        </>
     );
 };

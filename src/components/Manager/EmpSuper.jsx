@@ -108,7 +108,9 @@ export const EmpSuper = () => {
             ) : (
                 <>
                     <p className="text-white text-5xl font-bold m-5">Employees under Supervision</p>
+                    <p className="text-white text-xl">Select Employee to Reward and Review</p>
                     <div className="bg-white rounded-lg mt-5 shadow-lg p-8 w-full">
+                        
                         <div className="flex justify-center items-center w-full">
                             <table className="min-w-full bg-white rounded-t-lg m-2">
                                 <thead>

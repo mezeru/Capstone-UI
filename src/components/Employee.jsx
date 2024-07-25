@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axiosDB from "../axios";
+import { EmpNav } from "./Employee/EmpNav";
 
 export const Employee = () => {
     const [employee, setEmployee] = useState({});
@@ -24,6 +25,8 @@ export const Employee = () => {
     }, []);
 
     return (
+        <>
+        <EmpNav />
         <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 p-5">
             <div className="bg-white rounded-lg shadow-lg p-8 max-w-lg w-full">
                 <h1 className="text-4xl font-bold text-center text-purple-700 mb-6">Welcome, {employee.name}</h1>
@@ -62,5 +65,6 @@ export const Employee = () => {
                 </div>
             </div>
         </div>
+        </>
     );
 }

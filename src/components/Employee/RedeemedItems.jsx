@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axiosDB from "../../axios";
+import { EmpNav } from "./EmpNav";
 
 export const RedeemedItems = () => {
     const [items, setItems] = useState([]);
@@ -25,6 +26,8 @@ export const RedeemedItems = () => {
     }, []);
 
     return (
+        <>
+        <EmpNav />
         <div className="flex flex-col items-center justify-start min-h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 p-10">
             <h1 className="mb-12 text-white text-5xl font-bold">Items Redeemed</h1>
             <div className={`grid ${items.length ? "grid-cols-3" : "grid-cols-1"} gap-6 w-full px-6 py-8 bg-white rounded-lg shadow-md`}>
@@ -45,5 +48,6 @@ export const RedeemedItems = () => {
                 }
             </div>
         </div>
+        </>
     );
 }

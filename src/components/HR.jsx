@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
 import axiosDB from "../axios";
+import { HrNav } from "./new/HrNav";
 
 export const HR = () => {
 
@@ -28,6 +29,8 @@ export const HR = () => {
 
 
     return (
+        <>
+        <HrNav/>
         <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
             <h1 className="mb-20 text-white text-5xl font-bold">Welcome, {user.name}</h1>
             <div className="max-w-md flex flex-col w-full px-6 py-8 bg-white rounded-lg shadow-md">
@@ -44,5 +47,6 @@ export const HR = () => {
                 {/* Create ad diffrent link for Add new Item */}
             </div>
         </div>
+        </>
     );
 }
