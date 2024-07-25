@@ -6,6 +6,7 @@ export const NewEmployee = () => {
   const [user, setUser] = useState("");
   const [pass, setPass] = useState("");
   const [repass, setRepass] = useState("");
+  const [jobtype, setJobtype] = useState("");
   const [managers, setManagers] = useState([]);
   const [selectManager, setSelectManager] = useState(0);
   const [salary, setSalary] = useState(0);
@@ -38,10 +39,12 @@ export const NewEmployee = () => {
       try {
         const resp = await axiosDB.post(`/Employee/add/${selectManager}`, { // Assuming endpoint for employees
           name: name,
+          salary: salary,
+          jobtype: jobtype,
           userinfo: {
             username: user,
             password: pass,
-            salary: salary
+
           } // Include manager selection if needed
         },
         {
@@ -100,6 +103,23 @@ export const NewEmployee = () => {
                 {managers.map((manager) => (
                   <option key={manager.id} value={manager.id}>{manager.name}</option>
                 ))}
+              </select>
+        </div>
+
+        <div className="mt-4">
+              <label htmlFor="jobtype" className="block text-left text-md text-gray-700">Select Job Type</label>
+              <select
+                id="jobtype"
+                value={jobtype}
+                onChange={(e) => setJobtype(e.target.value)}
+                className="w-full px-4 py-2 mt-2 text-gray-700 bg-gray-200 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 block"
+              >
+                <option value="">Select a Job Type</option>
+                <option value="DATA_SCIENTIST">Data Scientist</option>
+                <option value="DATA_ENGINEER">Data Enginner</option>
+                <option value="UI_DEVELOPER">UI Developer</option>
+                <option value="SOFTWARE_ENGINEER">Software Engineer</option>	
+                
               </select>
         </div>
 

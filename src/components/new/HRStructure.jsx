@@ -14,6 +14,7 @@ export const HRStruct = () => {
             });
 
             setStruct(resp.data);
+            console.log(resp.data);
         };
 
         getStruct();
@@ -54,6 +55,7 @@ export const HRStruct = () => {
                                         className="p-6 bg-gray-800 rounded-lg shadow-md"
                                     >
                                         <h4 className="text-lg text-white font-medium mb-2">{employee.name}</h4>
+                                        <p className="text-white mb-2"> {String(employee.jobtype).replace("_"," ")}</p>
                                         <p className="text-white">Salary: $ {employee.salary}</p>
                                     </div>
                                 ))

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axiosDB from "../../axios";
+import { ManagerNav } from "./ManagerNav";
 
 export const EmpSuper = () => {
     const [employees, setEmployees] = useState([]);
@@ -51,6 +52,8 @@ export const EmpSuper = () => {
     };
 
     return (
+        <>
+        <ManagerNav/>
         <div className="flex flex-col items-center justify-start min-h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 p-5">
             {selectedEmployee ? (
                 <div className="w-full px-6 py-8 bg-white rounded-lg shadow-md mt-10">
@@ -116,26 +119,32 @@ export const EmpSuper = () => {
                                 <thead>
                                     <tr>
                                         <th className="px-6 py-5 border-b-2 border-gray-300 text-2xl text-center leading-4 text-gray-700">Employee</th>
+                                        <th className="px-6 py-5 border-b-2 border-gray-300 text-2xl text-center leading-4 text-gray-700">Job Type</th>
                                         <th className="px-6 py-5 border-b-2 border-gray-300 text-2xl text-center leading-4 text-gray-700">Salary</th>
                                         <th className="px-6 py-5 border-b-2 border-gray-300 text-2xl text-center leading-4 text-gray-700">Points</th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody className="bg-white border-none">
                                     {employees.map((employee) => (
-                                        <tr key={employee.id} onClick={() => handleEmployeeClick(employee)} className="cursor-pointer border border-gray-700 hover:border-white">
+                                        <tr key={employee.id} onClick={() => handleEmployeeClick(employee)} className="cursor-pointer border border-gray-400 rounded-md border-gray-700 hover:shadow-md hover:border-white">
                                             <td className="px-6 py-4 whitespace-no-wrap bg-gray-700 border-gray-500">
                                                 <div className="flex items-center justify-center">
                                                     <div>
-                                                        <div className="text-white font-bold text-lg leading-5">{employee.name}</div>
+                                                        <div className="text-white text-lg leading-5">{employee.name}</div>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td className="px-6 py-4 whitespace-no-wrap bg-gray-700 border-gray-500">
-                                                <div className="text-xl text-white leading-5 font-bold m-2">$ {employee.salary}</div>
+                                                <div className="capitalize text-md leading-5 text-white m-2">{String(employee.jobtype).replace("_"," ")}</div>
                                             </td>
                                             <td className="px-6 py-4 whitespace-no-wrap bg-gray-700 border-gray-500">
-                                                <div className="text-lg leading-5 text-white m-2">{employee.points}</div>
+                                                <div className="text-md text-white leading-5 m-2">$ {employee.salary}</div>
                                             </td>
+                                            <td className="px-6 py-4 whitespace-no-wrap bg-gray-700 border-gray-500">
+                                                <div className="text-md leading-5 text-white m-2">{employee.points}</div>
+                                            </td>
+                                            
                                         </tr>
                                     ))}
                                 </tbody>
@@ -145,5 +154,6 @@ export const EmpSuper = () => {
                 </>
             )}
         </div>
+        </>
     );
 };

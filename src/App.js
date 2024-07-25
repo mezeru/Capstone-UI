@@ -27,7 +27,7 @@ function App() {
           <Route path='/HR' element={<HR />} />
 
           <Route path='/Manager/view' element={<EmpSuper />} />
-          <Route path='/Manger/history' element={<ReviewHistory />} />
+          <Route path='/Manager/history' element={<ReviewHistory />} />
           <Route path='/Manager' element={<Manager />} />
           <Route path='/Employee/redeemed' element={<RedeemedItems/>} />
           <Route path='/Employee/newItem' element={<RedeemNew/>} />

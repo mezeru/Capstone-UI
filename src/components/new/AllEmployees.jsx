@@ -126,9 +126,11 @@ export const AllEmployees = () => {
             <table className="min-w-full bg-white rounded-t-lg mt-10">
               <thead>
                 <tr>
-                  <th className="px-6 py-5 border-b-2 border-gray-300 text-2xl text-center leading-4 text-gray-700">Employee</th>
-                  <th className="px-6 py-5 border-b-2 border-gray-300 text-2xl text-center leading-4 text-gray-700">Manager</th>
-                  <th className="px-6 py-5 border-b-2 border-gray-300 text-2xl text-center leading-4 text-gray-700">Salary</th>
+                  <th className="px-6 py-5 border-b-2 border-gray-300 text-xl text-center leading-4 text-gray-700">Employee</th>
+                  
+                  <th className="px-6 py-5 border-b-2 border-gray-300 text-xl text-center leading-4 text-gray-700">Job Type</th>
+                  <th className="px-6 py-5 border-b-2 border-gray-300 text-xl text-center leading-4 text-gray-700">Manager</th>
+                  <th className="px-6 py-5 border-b-2 border-gray-300 text-xl text-center leading-4 text-gray-700">Salary</th>
                 </tr>
               </thead>
               <tbody className="bg-white border-none">
@@ -137,15 +139,19 @@ export const AllEmployees = () => {
                     <td className="px-6 py-4 whitespace-no-wrap bg-gray-700 border-gray-500">
                       <div className="flex items-center justify-center">
                         <div>
-                          <div className="text-white font-bold text-lg leading-5">{employee.name}</div>
+                          <div className="text-white text-xl leading-5">{employee.name}</div>
                         </div>
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-no-wrap bg-gray-700 border-gray-500">
-                      <div className="text-xl text-white leading-5 font-bold m-2">{employee.manager.name}</div>
+                      <div className="text-md text-white leading-5 m-2">{String(employee.jobtype).replace("_"," ")}</div>
                     </td>
                     <td className="px-6 py-4 whitespace-no-wrap bg-gray-700 border-gray-500">
-                      <div className="text-lg leading-5 text-white m-2">${employee.salary}</div>
+                      <div className="text-md text-white leading-5 m-2">{employee.manager.name}</div>
+                    </td>
+                    
+                    <td className="px-6 py-4 whitespace-no-wrap bg-gray-700 border-gray-500">
+                      <div className="text-md leading-5 text-white m-2">${employee.salary}</div>
                     </td>
                   </tr>
                 ))}

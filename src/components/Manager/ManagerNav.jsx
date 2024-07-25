@@ -11,7 +11,7 @@ export const ManagerNav = () => {
         
             <Link to="/Manager" className="border border-white text-white rounded-md mx-2 px-4 py-2 hover:bg-white hover:text-gray-800"> Home </Link>
         <div>
-            <Link to="/Manger/view" className="border border-white text-white rounded-md mx-2 px-4 py-2 hover:bg-white hover:text-gray-800"> Employees </Link>
+            <Link to="/Manager/view" className="border border-white text-white rounded-md mx-2 px-4 py-2 hover:bg-white hover:text-gray-800"> Employees </Link>
 
             <Link to="/Manager/history" className="border border-white text-white rounded-md mx-2 px-4 py-2 hover:bg-white hover:text-gray-800"> View Rewards Given </Link>
             

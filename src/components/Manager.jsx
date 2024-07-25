@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axiosDB from "../axios";
 import { Link } from "react-router-dom";
 import { ManagerNav } from "./Manager/ManagerNav";
+import { Rewards } from "./Manager/Rewards";
 
 export const Manager = () => {
     const [manager, setManager] = useState({});
@@ -39,7 +40,7 @@ export const Manager = () => {
                 <Link to="/Manager/view" className="m-5 bg-green-500 hover:bg-green-700 text-white py-2 px-4 rounded">
                     View Employees under Supervison
                 </Link>
-                <Link to="/Manger/history" className="m-5 bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">
+                <Link to="/Manager/history" className="m-5 bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">
                     View History of Points Rewarded 
                 </Link>
                 <Link to="/Manager/view" className="m-5 bg-green-500 hover:bg-green-700 text-white py-2 px-4 rounded">
@@ -47,6 +48,8 @@ export const Manager = () => {
                 </Link>
                 </div>
             </div>
+
+            <Rewards />
 
             
         </div>
