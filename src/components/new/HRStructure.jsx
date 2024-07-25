@@ -46,7 +46,7 @@ export const HRStruct = () => {
                         <h2 className="text-4xl font-bold mb-4">{struct[activeTab].name}</h2>
                         
                         <div>
-                        <div className="grid grid-cols-3 gap-6">
+                        <div className={`grid ${struct[activeTab].employees.length > 0 ? "grid-cols-3":"grid-cols-1"} gap-6`}>
                             {struct[activeTab].employees.length > 0 ? (
                                 struct[activeTab].employees.map((employee) => (
                                     <div

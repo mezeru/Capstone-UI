@@ -33,8 +33,8 @@ export const ReviewHistory = () => {
     const employees = [...new Map(history.map(item => [item.employee.id, item.employee])).values()];
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 p-5">
-            <p className="text-white text-5xl font-bold m-5">Review History</p>
+        <div className="flex flex-col items-center justify-start min-h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 p-5">
+            <p className="text-white text-5xl font-bold m-5">Review History of Points Awarded</p>
             <div className="bg-white rounded-lg mt-5 shadow-lg p-8 w-full">
                 <div className="flex flex-row mb-4 justify-center">
                     {employees.map(employee => (

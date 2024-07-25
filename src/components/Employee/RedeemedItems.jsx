@@ -23,10 +23,12 @@ export const RedeemedItems = () => {
     }, []);
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 p-10">
+        <div className="flex flex-col items-center justify-start min-h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 p-10">
             <h1 className="mb-12 text-white text-5xl font-bold">Items Redeemed</h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full px-6 py-8 bg-white rounded-lg shadow-md">
-                {items.map((item) => (
+            <div className={`grid ${items.length ? "grid-cols-3" : "grid-cols-1"} gap-6 w-full px-6 py-8 bg-white rounded-lg shadow-md`}>
+                
+                { items.length > 0 ?
+                items.map((item) => (
                     <div key={item.id} className="flex flex-col justify-between p-6 bg-gray-800 rounded-lg shadow-md text-white">
                         <div className="mb-5">
                             <h1 className="text-3xl font-bold mb-2">{item.name}</h1>
@@ -34,7 +36,10 @@ export const RedeemedItems = () => {
                             <p className="text-lg font-semibold">Points: {item.points}</p>
                         </div>
                     </div>
-                ))}
+                ))
+                :
+                <p className="text-xl text-center">No Items Redeemed</p>
+                }
             </div>
         </div>
     );

@@ -42,7 +42,6 @@ export const HR = () => {
                 </Link>
                 
                 {/* Create ad diffrent link for Add new Item */}
-                {/* List of all managers and Employees under them */}
             </div>
         </div>
     );

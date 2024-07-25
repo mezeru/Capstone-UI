@@ -67,7 +67,7 @@ export const AllEmployees = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 px-10 py-10">
+    <div className="flex flex-col items-center justify-start min-h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 px-10 py-10">
       {selectedEmployee ? (
         // Form to reassign employee
         <div className="w-full px-6 py-8 bg-white rounded-lg shadow-md mt-10">

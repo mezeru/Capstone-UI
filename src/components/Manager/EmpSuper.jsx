@@ -51,7 +51,7 @@ export const EmpSuper = () => {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 p-5">
+        <div className="flex flex-col items-center justify-start min-h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 p-5">
             {selectedEmployee ? (
                 <div className="w-full px-6 py-8 bg-white rounded-lg shadow-md mt-10">
                     <p className="font-bold text-black text-5xl">Award Employee Points</p>
