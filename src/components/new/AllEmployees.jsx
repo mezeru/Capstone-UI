@@ -6,6 +6,7 @@ import { Dialog } from 'primereact/dialog';
 import { Button } from 'primereact/button';
 import 'primereact/resources/themes/saga-blue/theme.css';  // Choose your theme
 import 'primereact/resources/primereact.min.css';
+import { InputText } from 'primereact/inputtext';
 
 export const AllEmployees = () => {
     const [employees, setEmployees] = useState([]);
@@ -13,6 +14,7 @@ export const AllEmployees = () => {
     const [selectedEmployee, setSelectedEmployee] = useState(null);
     const [selectedManager, setSelectedManager] = useState("");
     const [visible, setVisible] = useState(false);
+    const [globalFilter, setGlobalFilter] = useState("")
 
     useEffect(() => {
         const getAllEmployees = async () => {
@@ -75,7 +77,11 @@ export const AllEmployees = () => {
         <div className="flex flex-col items-center justify-start min-h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 px-10 py-10">
             <p className="text-white text-5xl font-bold m-5">Select Employee to Reassign</p>
             <div className="bg-white rounded-lg mt-5 shadow-lg p-8 w-full">
-                <DataTable value={employees} paginator rows={10} rowsPerPageOptions={[5, 10, 25, 50]} stripedRows tableStyle={{ minWidth: '50rem' }}>
+                <div className="mb-4">
+                        <label>Search Employee </label>
+                        <InputText className="w-full border bg-gray-200 border-gray-700 focus:bg-white focus:border-blue-600 px-2 py-2 mt-2" type="search" value={globalFilter} onChange={(e) => setGlobalFilter(e.target.value)} placeholder="Search by name or job type" />
+                    </div>
+                <DataTable value={employees} paginator rows={10} rowsPerPageOptions={[5, 10, 25, 50]} stripedRows globalFilter={globalFilter} tableStyle={{ minWidth: '50rem' }}>
                     <Column className="border" field="name" header="Employee" body={(rowData) => <div className="text-lg leading-5">{rowData.name}</div>} />
                     <Column className="border" field="jobtype" header="Job Type" body={(rowData) => <div className="capitalize text-md leading-5">{String(rowData.jobtype).replace("_", " ")}</div>} />
                     <Column className="border" field="manager.name" header="Manager" body={(rowData) => <div className="text-md leading-5">{rowData.manager.name}</div>} />

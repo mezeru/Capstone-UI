@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axiosDB from "../../axios";
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
+import { InputText } from 'primereact/inputtext';
 import 'primereact/resources/themes/saga-blue/theme.css';  // Choose your theme
 import 'primereact/resources/primereact.min.css';
 
@@ -13,16 +14,11 @@ export const EmpSuper = ({ employeesList }) => {
     const [points, setPoints] = useState("");
     const [review, setReview] = useState("");
     const [visible, setVisible] = useState(false);
+    const [globalFilter, setGlobalFilter] = useState("");
 
-    const getEmps = async () => {
-        const resp = await axiosDB.get(`/Manager/empSuper/${localStorage.getItem('id')}`, {
-            headers: {
-                "Authorization": 'Basic ' + localStorage.getItem("token")
-            }
-        });
-
-        setEmployees(resp.data);
-    };
+    useEffect(() => {
+        setEmployees(employeesList);
+    }, [employeesList]);
 
     const handleEmployeeClick = (employee) => {
         setSelectedEmployee(employee);
@@ -46,9 +42,7 @@ export const EmpSuper = ({ employeesList }) => {
             setSelectedEmployee(null);  // Reset the form
             setPoints("");  // Clear points
             setReview("");  // Clear review
-            getEmps();
             setVisible(false);  // Hide the dialog
-
         } catch (error) {
             console.error("Error updating employee:", error);
             alert("Error updating employee.");
@@ -67,12 +61,16 @@ export const EmpSuper = ({ employeesList }) => {
                 <p className="text-white text-2xl font-bold m-5">Employees under Supervision</p>
                 <p className="text-white text-md">Select Employee to Reward and Review</p>
                 <div className="bg-white rounded-lg mt-5 shadow-lg p-8 w-full">
-                    <DataTable value={employees} paginator rows={10} rowsPerPageOptions={[5, 10, 25, 50]} stripedRows tableStyle={{ minWidth: '50rem' }}>
-                        <Column className="border 1" field="name" header="Employee" body={(rowData) => <div className="text-lg leading-5">{rowData.name}</div>} />
-                        <Column className="border 1" field="jobtype" header="Job Type" body={(rowData) => <div className="capitalize text-md leading-5">{String(rowData.jobtype).replace("_", " ")}</div>} />
-                        <Column className="border 1" field="salary" header="Salary" body={(rowData) => <div className="text-md leading-5">${rowData.salary}</div>} />
-                        <Column className="border 1" field="points" header="Points" body={(rowData) => <div className="text-md leading-5">{rowData.points}</div>} />
-                        <Column className="border 1 flex justify-center items-center" body={actionBodyTemplate} header="Actions" />
+                    <div className="mb-4">
+                        <label>Search Employee </label>
+                        <InputText className="w-full border bg-gray-200 border-gray-700 focus:bg-white focus:border-blue-600 px-2 py-2 mt-2" type="search" value={globalFilter} onChange={(e) => setGlobalFilter(e.target.value)} placeholder="Search by name or job type" />
+                    </div>
+                    <DataTable value={employees} stripedRows tableStyle={{ minWidth: '50rem' }} paginator rows={10} globalFilter={globalFilter} header="Employees">
+                        <Column className="border-1" field="name" header="Employee" body={(rowData) => <div className="text-lg leading-5">{rowData.name}</div>} filter filterPlaceholder="Search by name" />
+                        <Column className="border-1" field="jobtype" header="Job Type" body={(rowData) => <div className="capitalize text-md leading-5">{String(rowData.jobtype).replace("_", " ")}</div>} filter filterPlaceholder="Search by job type" />
+                        <Column className="border-1" field="salary" header="Salary" body={(rowData) => <div className="text-md leading-5">${rowData.salary}</div>} />
+                        <Column className="border-1" field="points" header="Points" body={(rowData) => <div className="text-md leading-5">{rowData.points}</div>} />
+                        <Column className="border-1 flex justify-center items-center" body={actionBodyTemplate} header="Actions" />
                     </DataTable>
                 </div>
             </div>
@@ -86,7 +84,7 @@ export const EmpSuper = ({ employeesList }) => {
                                 <input
                                     id="name"
                                     type="text"
-                                    className="w-full bg-gray-700  text-white px-4 py-2 mt-2 border border-gray-300 rounded-md focus:border-indigo-500 focus:outline-none"
+                                    className="w-full bg-gray-700 text-white px-4 py-2 mt-2 border border-gray-300 rounded-md focus:border-indigo-500 focus:outline-none"
                                     value={selectedEmployee.name}
                                     readOnly
                                 />
