@@ -75,7 +75,7 @@ export const AllEmployees = () => {
         <div className="flex flex-col items-center justify-start min-h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 px-10 py-10">
             <p className="text-white text-5xl font-bold m-5">Select Employee to Reassign</p>
             <div className="bg-white rounded-lg mt-5 shadow-lg p-8 w-full">
-                <DataTable value={employees} stripedRows tableStyle={{ minWidth: '50rem' }}>
+                <DataTable value={employees} paginator rows={10} rowsPerPageOptions={[5, 10, 25, 50]} stripedRows tableStyle={{ minWidth: '50rem' }}>
                     <Column className="border" field="name" header="Employee" body={(rowData) => <div className="text-lg leading-5">{rowData.name}</div>} />
                     <Column className="border" field="jobtype" header="Job Type" body={(rowData) => <div className="capitalize text-md leading-5">{String(rowData.jobtype).replace("_", " ")}</div>} />
                     <Column className="border" field="manager.name" header="Manager" body={(rowData) => <div className="text-md leading-5">{rowData.manager.name}</div>} />

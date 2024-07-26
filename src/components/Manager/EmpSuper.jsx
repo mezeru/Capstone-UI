@@ -67,7 +67,7 @@ export const EmpSuper = ({ employeesList }) => {
                 <p className="text-white text-2xl font-bold m-5">Employees under Supervision</p>
                 <p className="text-white text-md">Select Employee to Reward and Review</p>
                 <div className="bg-white rounded-lg mt-5 shadow-lg p-8 w-full">
-                    <DataTable value={employees} stripedRows tableStyle={{ minWidth: '50rem' }}>
+                    <DataTable value={employees} paginator rows={10} rowsPerPageOptions={[5, 10, 25, 50]} stripedRows tableStyle={{ minWidth: '50rem' }}>
                         <Column className="border 1" field="name" header="Employee" body={(rowData) => <div className="text-lg leading-5">{rowData.name}</div>} />
                         <Column className="border 1" field="jobtype" header="Job Type" body={(rowData) => <div className="capitalize text-md leading-5">{String(rowData.jobtype).replace("_", " ")}</div>} />
                         <Column className="border 1" field="salary" header="Salary" body={(rowData) => <div className="text-md leading-5">${rowData.salary}</div>} />
