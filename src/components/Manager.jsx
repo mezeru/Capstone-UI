@@ -3,10 +3,13 @@ import axiosDB from "../axios";
 import { Link } from "react-router-dom";
 import { ManagerNav } from "./Manager/ManagerNav";
 import { Rewards } from "./Manager/Rewards";
+import { useDispatch, useSelector } from "react-redux";
+import { getEmployee } from "../store/action/employee";
 
 export const Manager = () => {
     const [manager, setManager] = useState({});
-
+    const dispatch = useDispatch();
+    const {list} = useSelector((state)=>state.employee)
 
     useEffect(() => {
         const getManagerData = async () => {
@@ -23,10 +26,13 @@ export const Manager = () => {
             } catch (error) {
                 console.error("Error fetching employee data:", error);
             }
+
+            
+            dispatch(getEmployee());
         };
 
         getManagerData();
-    }, []);
+    }, [dispatch]);
 
     
 
@@ -46,6 +52,7 @@ export const Manager = () => {
                 <Link to="/Manager/view" className="m-5 bg-green-500 hover:bg-green-700 text-white py-2 px-4 rounded">
                     Reward Employees
                 </Link>
+                
                 </div>
             </div>
 

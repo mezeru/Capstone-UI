@@ -16,6 +16,7 @@ export const Employee = () => {
                 });
                 setEmployee(resp.data);
                 localStorage.setItem('id', resp.data.id);
+                console.log(resp.data);
             } catch (error) {
                 console.error("Error fetching employee data:", error);
             }
@@ -31,6 +32,7 @@ export const Employee = () => {
             <div className="bg-white rounded-lg shadow-lg p-8 max-w-lg w-full">
                 <h1 className="text-4xl font-bold text-center text-purple-700 mb-6">Welcome, {employee.name}</h1>
                 <div className="text-center mb-4">
+                    <p className="text-xl text-gray-700 my-2 text-pink-500"><strong>{String(employee?.jobtype).replace("_"," ")}</strong></p>
                     <p className="text-xl text-gray-700"><strong>Manager:</strong> {employee.manager?.name}</p>
                     <p className="text-xl text-gray-700"><strong>Salary:</strong> <span className="font-bold">$</span> {employee.salary}</p>
                     <p className="text-xl text-gray-700"><strong>Current Points:</strong> {employee.points}</p>

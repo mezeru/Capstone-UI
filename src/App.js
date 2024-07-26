@@ -13,11 +13,14 @@ import { Manager } from './components/Manager';
 import { EmpSuper } from './components/Manager/EmpSuper';
 import { ReviewHistory } from './components/Manager/ReviewHistory';
 import {PointsHistory} from './components/Employee/PointsHistory';
+import { Provider } from 'react-redux';
+import store from './store';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
+      <Provider store={store}>
         <Routes>
           
           <Route index path='/HR/Reassign' element={<AllEmployees />} />
@@ -36,6 +39,7 @@ function App() {
           <Route path='/' element={<Home />} />
           
         </Routes>
+        </Provider>
       </BrowserRouter>
     </div>
   );
