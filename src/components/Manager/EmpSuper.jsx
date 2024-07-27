@@ -16,6 +16,8 @@ export const EmpSuper = ({ employeesList }) => {
     const [visible, setVisible] = useState(false);
     const [globalFilter, setGlobalFilter] = useState("");
 
+    
+
     useEffect(() => {
         setEmployees(employeesList);
     }, [employeesList]);
@@ -66,11 +68,11 @@ export const EmpSuper = ({ employeesList }) => {
                         <InputText className="w-full border bg-gray-200 border-gray-700 focus:bg-white focus:border-blue-600 px-2 py-2 mt-2" type="search" value={globalFilter} onChange={(e) => setGlobalFilter(e.target.value)} placeholder="Search by name or job type" />
                     </div>
                     <DataTable value={employees} stripedRows tableStyle={{ minWidth: '50rem' }} paginator rows={10} globalFilter={globalFilter} header="Employees">
-                        <Column className="border-1" field="name" header="Employee" body={(rowData) => <div className="text-lg leading-5">{rowData.name}</div>} filter filterPlaceholder="Search by name" />
-                        <Column className="border-1" field="jobtype" header="Job Type" body={(rowData) => <div className="capitalize text-md leading-5">{String(rowData.jobtype).replace("_", " ")}</div>} filter filterPlaceholder="Search by job type" />
-                        <Column className="border-1" field="salary" header="Salary" body={(rowData) => <div className="text-md leading-5">${rowData.salary}</div>} />
-                        <Column className="border-1" field="points" header="Points" body={(rowData) => <div className="text-md leading-5">{rowData.points}</div>} />
-                        <Column className="border-1 flex justify-center items-center" body={actionBodyTemplate} header="Actions" />
+                        <Column className="border-2" field="name" header="Employee" body={(rowData) => <div className="text-lg leading-5">{rowData.name}</div>} filter filterPlaceholder="Search by name" />
+                        <Column className="border-2" field="jobtype" header="Job Type" body={(rowData) => <div className="capitalize text-md leading-5">{String(rowData.jobtype).replace("_", " ")}</div>} filter filterPlaceholder="Search by job type" />
+                        <Column className="border-2" field="salary" header="Salary" body={(rowData) => <div className="text-md leading-5">${rowData.salary}</div>} />
+                        <Column className="border-2" field="points" header="Points" body={(rowData) => <div className="text-md leading-5">{rowData.points}</div>} />
+                        <Column className="border-2 flex justify-center items-center" body={actionBodyTemplate} header="Actions" />
                     </DataTable>
                 </div>
             </div>

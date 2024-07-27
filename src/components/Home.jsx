@@ -1,6 +1,6 @@
 
-import { useState } from "react"
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from "react"
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import axiosDB from "../axios";
 
 export const Home = () => {
@@ -11,6 +11,16 @@ export const Home = () => {
     const[pass, setPass] = useState("");
     const[role,setRole] = useState("");
     const[invalid,setInvalid] = useState("");
+    const [param] = useSearchParams();
+    const[msg,setMsg] = useState("");
+
+    useEffect(() => {
+
+      if(param.get('msg')){
+        setMsg(param.get('msg'));
+      }
+
+    },[param])
 
 
     const handleSubmit = async (e) =>{
@@ -75,7 +85,7 @@ export const Home = () => {
           <div className="max-w-md w-full px-6 py-8 bg-white rounded-lg shadow-md">
             <h2 className="text-center text-3xl font-semibold text-gray-800">Login</h2>
             {invalid.length === 0 ? "":  <p className="mt-5 p-2 bg-red-500 rounded-lg text-white">{invalid}</p>}
-           
+            {msg.length === 0 ? "":  <p className="mt-5 p-2 bg-red-500 rounded-lg text-white">{msg}</p>}
             <form onSubmit={handleSubmit} className="mt-8">
               <div>
                 <label htmlFor="email" className="block text-gray-700">Enter Username</label>

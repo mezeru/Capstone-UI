@@ -10,11 +10,11 @@ import { RedeemNew } from './components/Employee/RedeemNew';
 import { RedeemedItems } from './components/Employee/RedeemedItems';
 import { HRStruct } from './components/new/HRStructure';
 import { Manager } from './components/Manager';
-import { EmpSuper } from './components/Manager/EmpSuper';
 import { ReviewHistory } from './components/Manager/ReviewHistory';
 import {PointsHistory} from './components/Employee/PointsHistory';
 import { Provider } from 'react-redux';
 import store from './store';
+import { Rewards } from './components/Manager/Rewards';
 
 function App() {
   return (
@@ -29,7 +29,8 @@ function App() {
           
           <Route path='/HR' element={<HR />} />
 
-          <Route path='/Manager/view' element={<EmpSuper />} />
+          <Route path='/Manager/reward' element={<Rewards />} />
+
           <Route path='/Manager/history' element={<ReviewHistory />} />
           <Route path='/Manager' element={<Manager />} />
           <Route path='/Employee/redeemed' element={<RedeemedItems/>} />

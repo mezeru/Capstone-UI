@@ -2,6 +2,7 @@ import { useState } from "react";
 import { NewManager } from "./newManager";
 import { NewEmployee } from "./newEmployee";
 import { NewItem } from "./newItem";
+import { HrNav } from "./HrNav";
 
 export const AddNew = () => {
   const [select, setSelect] = useState("");
@@ -20,6 +21,8 @@ export const AddNew = () => {
   };
 
   return (
+    <>
+    <HrNav />
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 px-10 py-10">
       <div className="m-5">
         <div className="flex flex-col justify-center">
@@ -39,5 +42,6 @@ export const AddNew = () => {
       </div>
       {renderComponent()}
     </div>
+    </>
   );
 };

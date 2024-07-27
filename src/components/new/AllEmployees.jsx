@@ -7,6 +7,7 @@ import { Button } from 'primereact/button';
 import 'primereact/resources/themes/saga-blue/theme.css';  // Choose your theme
 import 'primereact/resources/primereact.min.css';
 import { InputText } from 'primereact/inputtext';
+import { HrNav } from "./HrNav";
 
 export const AllEmployees = () => {
     const [employees, setEmployees] = useState([]);
@@ -74,6 +75,8 @@ export const AllEmployees = () => {
     };
 
     return (
+        <>
+        <HrNav />
         <div className="flex flex-col items-center justify-start min-h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 px-10 py-10">
             <p className="text-white text-5xl font-bold m-5">Select Employee to Reassign</p>
             <div className="bg-white rounded-lg mt-5 shadow-lg p-8 w-full">
@@ -144,5 +147,6 @@ export const AllEmployees = () => {
                 )}
             </Dialog>
         </div>
+        </>
     );
 };

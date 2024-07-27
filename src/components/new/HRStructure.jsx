@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axiosDB from "../../axios";
+import { HrNav } from "./HrNav";
 
 export const HRStruct = () => {
     const [struct, setStruct] = useState([]);
@@ -21,6 +22,8 @@ export const HRStruct = () => {
     }, []);
 
     return (
+        <>
+        <HrNav />
         <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 p-10">
             <h1 className="mb-20 text-white text-5xl font-bold">Manager and Employee Strucutre</h1>
             <div className="text-sm w-full bg-gray-800 rounded-t-lg font-medium text-center text-gray-500 border-b border-gray-200 py-1 px-1">
@@ -68,5 +71,6 @@ export const HRStruct = () => {
                 )}
             </div>
         </div>
+        </>
     );
 };
