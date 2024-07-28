@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import axiosDB from "../../axios";
+import { ManagerNav } from "./ManagerNav";
 
 export const Rewards = () => {
 
@@ -46,9 +47,13 @@ export const Rewards = () => {
     }
     
     return (
-
+        <>
+        <ManagerNav/>
+        
+        <div className="flex flex-col min-h-screen items-center pt-5 justify-center bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 p-5">
+            <p className="font-bold text-white text-5xl">Award Employee Points</p>
             <div className="w-full px-6 py-8 bg-white rounded-lg shadow-md mt-10">
-                    <p className="font-bold text-black text-5xl">Award Employee Points</p>
+                    
                     <form onSubmit={handleSubmit} className="m-5 mt-8">
                     <label htmlFor="points" className="block text-left text-md text-gray-700">Select Employee</label>
                         <select
@@ -105,7 +110,10 @@ export const Rewards = () => {
                             Update
                         </button>
                     </form>
-                </div>
+            </div>
+        </div>
+
+        </>
 
     )
 

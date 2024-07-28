@@ -1,12 +1,38 @@
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import axiosDB from "../../axios";
+import { HrNav } from "./HrNav";
+import { Column } from "primereact/column";
+import { DataTable } from "primereact/datatable";
+import { InputText } from "primereact/inputtext";
 
 export const NewItem = () => {
 
   const[name,setName] = useState("");
   const[desc,setDesc] = useState("");
   const[points,setPoints] = useState(0);
+  const[globalFilter,setGlobalFilter] = useState("");
+  const[items,setItems] = useState([]);
+
+  useEffect(() => {
+
+    const getItems = async () => {
+      try {
+          const { data } = await axiosDB.get("/Items/getAll", {
+              headers: {
+                  'Authorization': 'Basic ' + localStorage.getItem("token"),
+              },
+          });
+          setItems(data);
+      } catch (error) {
+          console.error("Error fetching items:", error);
+      }
+
+  };
+
+  getItems();
+
+  },[])
 
   const handleSubmit = async (e) =>{
 
@@ -42,9 +68,12 @@ export const NewItem = () => {
   }
 
     return (
+      <>
+      <HrNav/>
+      <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 px-10 py-10">
+        <p className="font-bold text-white text-4xl">Add a New Item</p>
+      <div className="w-full px-6 py-8 bg-white rounded-lg shadow-md m-5">
         
-    <div className="w-full px-6 py-8 bg-white rounded-lg shadow-md">
-        <p className="font-bold text-black text-4xl">Add a New Item</p>
         <form onSubmit={handleSubmit} className="m-5 mt-8 ">
             
               <div className="mt-4">
@@ -97,6 +126,21 @@ export const NewItem = () => {
             </form>
 
     </div>
+
+    <div className="bg-white rounded-lg mt-5 shadow-lg p-8 w-full">
+                    <div className="mb-4">
+                        <label>Search Item </label>
+                        <InputText className="w-full border bg-gray-200 border-gray-700 focus:bg-white focus:border-blue-600 px-2 py-2 mt-2" type="search" value={globalFilter} onChange={(e) => setGlobalFilter(e.target.value)} placeholder="Search Item" />
+                    </div>
+                    <DataTable value={items} stripedRows tableStyle={{ minWidth: '50rem' }} paginator rows={10} globalFilter={globalFilter} header="Items">
+                        <Column className="border-2" field="name" header="Name" body={(rowData) => <div className="text-lg leading-5">{rowData.name}</div>} filter filterPlaceholder="Search by name" />
+                        <Column className="border-2" field="salary" header="Points" body={(rowData) => <div className="text-md leading-5">{rowData.points}</div>} />
+                        <Column className="border-2" field="points" header="Description" body={(rowData) => <div className="text-md leading-5">{rowData.description}</div>} />
+                    </DataTable>
+                </div>
+
+    </div>
+    </>
 
     )
 

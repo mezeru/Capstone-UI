@@ -44,9 +44,11 @@ export const Manager = () => {
                         <Link to="/Manager/history" className="m-5 bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">
                             View History of Points Rewarded
                         </Link>
-                        <div className="m-5 bg-green-500 hover:bg-green-700 text-white py-2 px-4 rounded">
-                            Show Employees
-                        </div>
+
+                        <Link to="/Manager/reward" className="m-5 bg-green-500 hover:bg-green-700 text-white py-2 px-4 rounded">
+                            Reward Employees
+                        </Link>
+                        
                     </div>
                 </div>
             </div>

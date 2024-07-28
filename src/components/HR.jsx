@@ -76,8 +76,11 @@ export const HR = () => {
                         <Link to="/HR/Structure" className="m-5 bg-yellow-500 hover:bg-yellow-700 text-white py-2 px-4 rounded">
                             View the Manager and Employee Structure
                         </Link>
-                        
-                        {/* Create ad diffrent link for Add new Item */}
+
+                        <Link to="/HR/newItem" className="m-5 bg-rose-500 hover:bg-rose-700 text-white py-2 px-4 rounded">
+                            Add Items
+                        </Link>
+                    
                     </div>
                     <div className="flex flex-col justify-center items-center max-w-md bg-white rounded-lg p-5 border">
                         <h1 className="mb-5 text-gray-700 text-xl font-bold">Manager Count</h1>

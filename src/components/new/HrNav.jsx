@@ -26,6 +26,8 @@ export const HrNav = () => {
         <Link to="/HR/Reassign" className="text-white rounded-md mx-2 px-4 py-2 hover:bg-white hover:text-gray-800"> Reassign Employee </Link>
 
         <Link to="/HR/Structure" className="text-white rounded-md mx-2 px-4 py-2 hover:bg-white hover:text-gray-800"> Organization Structure </Link>
+
+        <Link to="/HR/newItem" className="text-white rounded-md mx-2 px-4 py-2 hover:bg-white hover:text-gray-800"> Add a New Item </Link>
         
         </div>
 

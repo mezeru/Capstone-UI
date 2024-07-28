@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { NewManager } from "./newManager";
 import { NewEmployee } from "./newEmployee";
-import { NewItem } from "./newItem";
 import { HrNav } from "./HrNav";
 
 export const AddNew = () => {
@@ -13,8 +12,6 @@ export const AddNew = () => {
         return <NewManager />;
       case "2":
         return <NewEmployee />;
-      case "3":
-        return <NewItem />;
       default:
         ;
     }
@@ -36,7 +33,6 @@ export const AddNew = () => {
             <option value="">Select an option</option>
             <option value="1">Add Manager</option>
             <option value="2">Add Employee</option>
-            <option value="3">Add Item</option>
           </select>
         </div>
       </div>

@@ -15,6 +15,7 @@ import {PointsHistory} from './components/Employee/PointsHistory';
 import { Provider } from 'react-redux';
 import store from './store';
 import { Rewards } from './components/Manager/Rewards';
+import { NewItem } from './components/new/newItem';
 
 function App() {
   return (
@@ -26,13 +27,13 @@ function App() {
           <Route index path='/HR/Reassign' element={<AllEmployees />} />
           <Route  path='/HR/add' element={<AddNew />} />
           <Route  path='/HR/Structure' element={<HRStruct />} />
-          
+          <Route  path='/HR/newItem' element={<NewItem />} />
           <Route path='/HR' element={<HR />} />
 
           <Route path='/Manager/reward' element={<Rewards />} />
-
           <Route path='/Manager/history' element={<ReviewHistory />} />
           <Route path='/Manager' element={<Manager />} />
+
           <Route path='/Employee/redeemed' element={<RedeemedItems/>} />
           <Route path='/Employee/newItem' element={<RedeemNew/>} />
           <Route path='/Employee/pointsHistory' element={<PointsHistory/>} />
