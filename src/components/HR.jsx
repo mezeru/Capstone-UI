@@ -105,7 +105,7 @@ export const HR = () => {
                             </Link>
 
                             <Link to="/HR/Reassign" className="m-5 bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">
-                                Assign Manager to Employee
+                                View All Employees
                             </Link>
                             <Link to="/HR/Structure" className="m-5 bg-yellow-500 hover:bg-yellow-700 text-white py-2 px-4 rounded">
                                 Organization Structure

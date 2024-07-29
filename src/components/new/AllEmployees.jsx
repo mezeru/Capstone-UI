@@ -4,10 +4,9 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Dialog } from 'primereact/dialog';
 import { Button } from 'primereact/button';
-import 'primereact/resources/themes/saga-blue/theme.css';  // Choose your theme
-import 'primereact/resources/primereact.min.css';
 import { InputText } from 'primereact/inputtext';
 import { HrNav } from "./HrNav";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 export const AllEmployees = () => {
     const [employees, setEmployees] = useState([]);
@@ -15,7 +14,9 @@ export const AllEmployees = () => {
     const [selectedEmployee, setSelectedEmployee] = useState(null);
     const [selectedManager, setSelectedManager] = useState("");
     const [visible, setVisible] = useState(false);
-    const [globalFilter, setGlobalFilter] = useState("")
+    const [globalFilter, setGlobalFilter] = useState("");
+
+    const navigate = useNavigate(); // Initialize useNavigate
 
     useEffect(() => {
         const getAllEmployees = async () => {
@@ -74,26 +75,40 @@ export const AllEmployees = () => {
         }
     };
 
+    const handleEditClick = (employee) => {
+        navigate(`/employee/edit/${employee.id}`); // Navigate to the edit employee page
+    };
+
     return (
         <>
         <HrNav />
         <div className="flex flex-col items-center justify-start min-h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 px-10 py-10">
             <p className="text-white text-5xl font-bold m-5">Select Employee to Reassign</p>
+            
+            {employees.length === 0 ? " " :
             <div className="bg-white rounded-lg mt-5 shadow-lg p-8 w-full">
                 <div className="mb-4">
-                        <label>Search Employee </label>
-                        <InputText className="w-full border bg-gray-200 border-gray-700 focus:bg-white focus:border-blue-600 px-2 py-2 mt-2" type="search" value={globalFilter} onChange={(e) => setGlobalFilter(e.target.value)} placeholder="Search by name or job type" />
-                    </div>
+                    <label>Search Employee </label>
+                    <InputText className="w-full border bg-gray-200 border-gray-700 focus:bg-white focus:border-blue-600 px-2 py-2 mt-2" type="search" value={globalFilter} onChange={(e) => setGlobalFilter(e.target.value)} placeholder="Search by name or job type" />
+                </div>
+
+                
                 <DataTable value={employees} paginator rows={10} rowsPerPageOptions={[5, 10, 25, 50]} stripedRows globalFilter={globalFilter} tableStyle={{ minWidth: '50rem' }}>
                     <Column className="border" field="name" header="Employee" body={(rowData) => <div className="text-lg leading-5">{rowData.name}</div>} />
                     <Column className="border" field="jobtype" header="Job Type" body={(rowData) => <div className="capitalize text-md leading-5">{String(rowData.jobtype).replace("_", " ")}</div>} />
                     <Column className="border" field="manager.name" header="Manager" body={(rowData) => <div className="text-md leading-5">{rowData.manager.name}</div>} />
                     <Column className="border" field="salary" header="Salary" body={(rowData) => <div className="text-md leading-5">${rowData.salary}</div>} />
                     <Column className="border flex justify-center items-center" body={(rowData) => (
-                        <Button className=" flex flex-col bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" label="Reassign" icon="pi pi-pencil" onClick={() => handleEmployeeClick(rowData)} />
+                        <div className="flex space-x-2">
+                            <Button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" label="Reassign" icon="pi pi-pencil" onClick={() => handleEmployeeClick(rowData)} />
+                            <Button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" label="Edit" icon="pi pi-pencil" onClick={() => handleEditClick(rowData)} />
+                        </div>
                     )} header="Actions" />
                 </DataTable>
+                
             </div>
+
+            }
 
             <Dialog header="Reassign Employee To Manager" visible={visible} style={{ width: '50vw' }} onHide={() => setVisible(false)}>
                 {selectedEmployee && (

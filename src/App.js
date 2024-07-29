@@ -16,6 +16,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 import { Rewards } from './components/Manager/Rewards';
 import { NewItem } from './components/new/newItem';
+import { NewEmployee } from './components/new/newEmployee';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           
           <Route index path='/HR/Reassign' element={<AllEmployees />} />
           <Route  path='/HR/add' element={<AddNew />} />
+          <Route path="/employee/edit/:id" element={<NewEmployee/>} />
           <Route  path='/HR/Structure' element={<HRStruct />} />
           <Route  path='/HR/newItem' element={<NewItem />} />
           <Route path='/HR' element={<HR />} />
