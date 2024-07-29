@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import axiosDB from "../../axios";
 import { EmpNav } from "./EmpNav";
+import { DataTable } from "primereact/datatable";
+import { Column } from "primereact/column";
 
 export const PointsHistory = () => {
   const [history, setHistory] = useState([]);
@@ -19,6 +21,7 @@ export const PointsHistory = () => {
           .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp)); // Sort descending by timestamp
         
         setHistory(sortedHistory);
+        console.log(sortedHistory);
       } catch (error) {
         console.error("Error fetching history:", error);
       }
@@ -34,26 +37,20 @@ export const PointsHistory = () => {
       <p className="text-white text-5xl font-bold m-5">Points and Reward History</p>
       <div className="bg-white rounded-lg mt-5 shadow-lg p-8 w-full">
         <div className="flex justify-center items-center w-full">
-          <table className="min-w-full bg-white rounded-t-lg">
-            <thead>
-              <tr>
-                <th className="px-6 py-5 border-b-2 border-gray-300 text-2xl text-center leading-4 text-gray-700">Item</th>
-                <th className="px-6 py-5 border-b-2 border-gray-300 text-2xl text-center leading-4 text-gray-700">Manager</th>
-                <th className="px-6 py-5 border-b-2 border-gray-300 text-2xl text-center leading-4 text-gray-700">Points</th>
-                <th className="px-6 py-5 border-b-2 border-gray-300 text-2xl text-center leading-4 text-gray-700">Timestamp</th>
-              </tr>
-            </thead>
-            <tbody className="bg-white border-none">
-              {history.map((entry, index) => (
-                <tr key={index}>
-                  <td className="px-6 py-4 whitespace-no-wrap bg-gray-700 border-gray-500 text-white">{entry.itemName || ' '}</td>
-                  <td className="px-6 py-4 whitespace-no-wrap bg-gray-700 border-gray-500 text-white">{entry.managerName || ' '}</td>
-                  <td className="px-6 py-4 whitespace-no-wrap bg-gray-700 border-gray-500 text-white">{entry.itemName === null ? "+":"-"} {entry.points}</td>
-                  <td className="px-6 py-4 whitespace-no-wrap bg-gray-700 border-gray-500 text-white">{new Date(entry.timestamp).toLocaleString()}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        {
+          history.length > 0 ?
+          <DataTable className="w-full" value={history} stripedRows tableStyle={{ minWidth: '50rem' }} paginator rows={10}>
+                    <Column className="border-2" field="time" header="Date Time" body={(rowData) => <div className="text-md leading-5">{new Date(rowData.timestamp).toLocaleString()}</div>} />
+                    <Column className="border-2" field="item" header="Item" body={(rowData) => <div className="text-lg leading-5">{rowData.itemName}</div>}  />
+                    <Column className="border-2" field="manager" header="Manager" body={(rowData) => <div className="capitalize text-md leading-5">{rowData.managerName}</div>}  />
+                    <Column className="border-2" field="points" header="Points" body={(rowData) => <div className="text-md leading-5 font-bold">{rowData.managerName?.length > 0  ? `+ ${rowData.points}` : `- ${rowData.points}` }</div>} />
+                    <Column className="border-2" field="Desc" header="Description" body={(rowData) => <div className={`text-md leading-5 ${rowData.managerName?.length > 0  ? "font-bold" : "" }`}>{rowData.managerName?.length > 0  ? "Review : "+rowData.desc : rowData.desc  }</div>} />
+                    
+        </DataTable>
+        :
+        "No History to Show"
+
+        }
         </div>
       </div>
     </div>

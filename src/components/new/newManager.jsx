@@ -71,7 +71,7 @@ export const NewManager = () => {
                 <label htmlFor="name" className="block text-left text-md text-gray-700">Enter Username</label>
                 <input
                   id="username"
-                  type="text"
+                  type="email"
                   className="w-full px-4 py-2 mt-2 text-gray-700 bg-gray-200 border border-gray-300 rounded-md focus:border-indigo-500 focus:bg-white focus:outline-none"
                   placeholder="Enter username"
                   value={user}

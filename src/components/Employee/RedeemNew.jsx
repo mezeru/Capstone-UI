@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import axiosDB from "../../axios";
 import { EmpNav } from "./EmpNav";
+import { useNavigate } from "react-router-dom";
 
 export const RedeemNew = () => {
     const [items, setItems] = useState([]);
     const [points,setPoints] = useState(0);
+
+    const nav = useNavigate();
 
     useEffect(() => {
         const getItems = async () => {
@@ -42,18 +45,28 @@ export const RedeemNew = () => {
 
     const handleRedeem = async (id) => {
         
-        const resp = await axiosDB.post(`/Employee/redeemItem/${localStorage.getItem("id")}/${id}`,{},{
-            headers:{
-                "Authorization" : "Basic "+localStorage.getItem('token')
+        try{
+            const resp = await axiosDB.post(`/Employee/redeemItem/${localStorage.getItem("id")}/${id}`,{},{
+                headers:{
+                    "Authorization" : "Basic "+localStorage.getItem('token')
+                }
+            });
+    
+            getPoints();
+            if(resp.status === 200){
+
+                alert("Item has been Redeemed");
+                nav("/Employee/redeemed")
+                
             }
-        });
-
-        getPoints();
-
-        if(resp.status === 200){
-
-            alert("Item has been Redeemed");
         }
+        catch(e){
+       
+            alert("Insufficiant Points")
+            
+        }
+
+        
 
     };
 
@@ -70,7 +83,7 @@ export const RedeemNew = () => {
                         <div className="flex items-center flex-col mb-5">
                             <h1 className="text-3xl m-2">{item.name}</h1>
                             <h1 className="m-2">{item.description}</h1>
-                            <h1 className="m-2">{`Points: ${item.points}`}</h1>
+                            <h1 className="m-2 font-bold text-3xl">{`Points: ${item.points}`}</h1>
                         </div>
                         <div className="flex justify-center items-center">
                             <button

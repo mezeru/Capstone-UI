@@ -85,13 +85,13 @@ export const Home = () => {
           <div className="max-w-md w-full px-6 py-8 bg-white rounded-lg shadow-md">
             <h2 className="text-center text-3xl font-semibold text-gray-800">Login</h2>
             {invalid.length === 0 ? "":  <p className="mt-5 p-2 bg-red-500 rounded-lg text-white">{invalid}</p>}
-            {msg.length === 0 ? "":  <p className="mt-5 p-2 bg-red-500 rounded-lg text-white">{msg}</p>}
+            {msg.length === 0 || invalid.length > 0 ? "":  <p className="mt-5 p-2 bg-red-500 rounded-lg text-white">{msg}</p>}
             <form onSubmit={handleSubmit} className="mt-8">
               <div>
                 <label htmlFor="email" className="block text-gray-700">Enter Username</label>
                 <input
                   id="email"
-                  type="text"
+                  type="email"
                   className="w-full px-4 py-2 mt-2 text-gray-700 bg-gray-200 border border-gray-300 rounded-md focus:border-indigo-500 focus:bg-white focus:outline-none"
                   placeholder="Enter your Username"
                   value={email}

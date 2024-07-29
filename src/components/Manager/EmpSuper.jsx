@@ -16,6 +16,21 @@ export const EmpSuper = ({ employeesList }) => {
     const [visible, setVisible] = useState(false);
     const [globalFilter, setGlobalFilter] = useState("");
 
+    const getEmployees = async () => {
+        try{
+            const resp = await axiosDB.get(`/Manager/empSuper/${localStorage.getItem('id')}`, {
+                headers: {
+                    "Authorization": "Basic " + localStorage.getItem('token')
+                }
+            });
+
+            setEmployees(resp.data);
+            console.log(resp.data);
+        }
+        catch(e){
+            console.log(e);
+        }
+    }
     
 
     useEffect(() => {
@@ -23,9 +38,11 @@ export const EmpSuper = ({ employeesList }) => {
     }, [employeesList]);
 
     const handleEmployeeClick = (employee) => {
+        
         setSelectedEmployee(employee);
         setPoints(employee.points);
         setVisible(true);  // Show the dialog
+        
     };
 
     const handleSubmit = async (e) => {
@@ -40,11 +57,12 @@ export const EmpSuper = ({ employeesList }) => {
                     'Authorization': 'Basic ' + localStorage.getItem("token"),
                 },
             });
-            alert("Employee information updated successfully!");
+            
             setSelectedEmployee(null);  // Reset the form
             setPoints("");  // Clear points
             setReview("");  // Clear review
             setVisible(false);  // Hide the dialog
+            getEmployees();
         } catch (error) {
             console.error("Error updating employee:", error);
             alert("Error updating employee.");

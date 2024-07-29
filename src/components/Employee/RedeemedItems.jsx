@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import axiosDB from "../../axios";
 import { EmpNav } from "./EmpNav";
+import { DataTable } from "primereact/datatable";
+import { Column } from "primereact/column";
 
 export const RedeemedItems = () => {
     const [items, setItems] = useState([]);
@@ -17,6 +19,7 @@ export const RedeemedItems = () => {
                 const data = resp.data.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
 
                 setItems(data);
+                console.log(resp.data)
             } catch (error) {
                 console.error("Error fetching redeemed items:", error);
             }
@@ -30,19 +33,16 @@ export const RedeemedItems = () => {
         <EmpNav />
         <div className="flex flex-col items-center justify-start min-h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 p-10">
             <h1 className="mb-12 text-white text-5xl font-bold">Items Redeemed</h1>
-            <div className={`grid ${items.length ? "grid-cols-3" : "grid-cols-1"} gap-6 w-full px-6 py-8 bg-white rounded-lg shadow-md`}>
+            <div className="flex justify-center items-center gap-6 w-full px-6 py-8 bg-white rounded-lg shadow-md">
                 
                 { items.length > 0 ?
-                items.map((item) => (
-                    <div key={item.id} className="flex flex-col justify-between p-6 bg-gray-800 rounded-lg shadow-md text-white">
-                        <div className="mb-5">
-                            <h1 className="text-3xl font-bold mb-2">{item.item.name}</h1>
-                            <p className="text-lg mb-2">{item.item.description}</p>
-                            <p className="text-lg font-semibold">Points: {item.item.points}</p>
-                            <p className="text-lg font-semibold"> {new Date(item.timestamp).toLocaleString()}</p>
-                        </div>
-                    </div>
-                ))
+                <DataTable className="w-full" value={items} stripedRows tableStyle={{ minWidth: '50rem' }} paginator rows={10}>
+                    <Column className="border-2" field="name" header="Item Name" body={(rowData) => <div className="text-lg leading-5">{rowData.item.name}</div>}  />
+                    <Column className="border-2 font-bold" field="Points" header="Points" body={(rowData) => <div className="capitalize text-md leading-5">{rowData.item.points}</div>}  />
+                 
+                    <Column className="border-2" field="desc" header="Description" body={(rowData) => <div className="text-md leading-5">{rowData.item.description}</div>} />
+                    <Column className="border-2" field="time" header="Date Time" body={(rowData) => <div className="text-md leading-5">{new Date(rowData.timestamp).toLocaleString()}</div>} />
+                </DataTable>
                 :
                 <p className="text-xl text-center">No Items Redeemed</p>
                 }
