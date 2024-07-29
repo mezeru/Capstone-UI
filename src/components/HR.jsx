@@ -5,6 +5,7 @@ import axiosDB from "../axios";
 import { HrNav } from "./new/HrNav";
 
 import { Knob } from 'primereact/knob';
+import { Search } from "./new/Search";
         
 
 export const HR = () => {
@@ -52,7 +53,7 @@ export const HR = () => {
         <>
         <HrNav/>
         
-        <div className="flex flex-row items-center justify-evenly min-h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
+        <div className="flex py-20 flex-col items-center justify-evenly min-h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
             
         
 
@@ -66,20 +67,22 @@ export const HR = () => {
                         <Knob value={count?.employeeCount} size={100} strokeWidth={5} />
                     </div>
                     
-                    <div className="max-w-md flex flex-col w-full px-6 py-8 bg-white rounded-lg">
+                    <div className="max-w-md grid grid-cols-2 w-full px-6 py-8 bg-white rounded-lg">
                         <Link to="/HR/add" className="m-5 bg-green-500 hover:bg-green-700 text-white py-2 px-4 rounded">
                             Add New +
                         </Link>
+                        <Link to="/HR/newItem" className="m-5 bg-rose-500 hover:bg-rose-700 text-white py-2 px-4 rounded">
+                            Add Items
+                        </Link>
+
                         <Link to="/HR/Reassign" className="m-5 bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">
                             Assign Manager to Employee
                         </Link>
                         <Link to="/HR/Structure" className="m-5 bg-yellow-500 hover:bg-yellow-700 text-white py-2 px-4 rounded">
-                            View the Manager and Employee Structure
+                            Organization Structure
                         </Link>
 
-                        <Link to="/HR/newItem" className="m-5 bg-rose-500 hover:bg-rose-700 text-white py-2 px-4 rounded">
-                            Add Items
-                        </Link>
+                      
                     
                     </div>
                     <div className="flex flex-col justify-center items-center max-w-md bg-white rounded-lg p-5 border">
@@ -90,8 +93,13 @@ export const HR = () => {
                 
             </div>
 
-          
+            <div className="flex flex-col justify-center items-center">
+                <Search />
+            </div>
+            
+                      
         </div>
+        
         </>
     );
 }

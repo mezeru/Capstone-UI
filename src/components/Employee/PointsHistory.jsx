@@ -37,8 +37,8 @@ export const PointsHistory = () => {
           <table className="min-w-full bg-white rounded-t-lg">
             <thead>
               <tr>
-                <th className="px-6 py-5 border-b-2 border-gray-300 text-2xl text-center leading-4 text-gray-700">Item Name</th>
-                <th className="px-6 py-5 border-b-2 border-gray-300 text-2xl text-center leading-4 text-gray-700">Manager Name</th>
+                <th className="px-6 py-5 border-b-2 border-gray-300 text-2xl text-center leading-4 text-gray-700">Item</th>
+                <th className="px-6 py-5 border-b-2 border-gray-300 text-2xl text-center leading-4 text-gray-700">Manager</th>
                 <th className="px-6 py-5 border-b-2 border-gray-300 text-2xl text-center leading-4 text-gray-700">Points</th>
                 <th className="px-6 py-5 border-b-2 border-gray-300 text-2xl text-center leading-4 text-gray-700">Timestamp</th>
               </tr>
@@ -46,8 +46,8 @@ export const PointsHistory = () => {
             <tbody className="bg-white border-none">
               {history.map((entry, index) => (
                 <tr key={index}>
-                  <td className="px-6 py-4 whitespace-no-wrap bg-gray-700 border-gray-500 text-white">{entry.itemName || '-'}</td>
-                  <td className="px-6 py-4 whitespace-no-wrap bg-gray-700 border-gray-500 text-white">{entry.managerName || '-'}</td>
+                  <td className="px-6 py-4 whitespace-no-wrap bg-gray-700 border-gray-500 text-white">{entry.itemName || ' '}</td>
+                  <td className="px-6 py-4 whitespace-no-wrap bg-gray-700 border-gray-500 text-white">{entry.managerName || ' '}</td>
                   <td className="px-6 py-4 whitespace-no-wrap bg-gray-700 border-gray-500 text-white">{entry.itemName === null ? "+":"-"} {entry.points}</td>
                   <td className="px-6 py-4 whitespace-no-wrap bg-gray-700 border-gray-500 text-white">{new Date(entry.timestamp).toLocaleString()}</td>
                 </tr>
