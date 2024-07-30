@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axiosDB from "../../axios";
 import { HrNav } from "./HrNav";
 
 export const NewEmployee = () => {
+
+  const nav = useNavigate();
+
   const { id } = useParams();
   const [name, setName] = useState("");
   const [user, setUser] = useState("");
@@ -96,7 +99,7 @@ export const NewEmployee = () => {
 
       if (resp.status === 200) {
         alert(id ? "Employee updated successfully" : "Employee added successfully");
-        // Navigate to the employee list page
+        nav("/HR/Reassign");
       }
     } catch (error) {
       console.error("Failed to save employee:", error);

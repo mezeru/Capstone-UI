@@ -62,7 +62,12 @@ export const Manager = () => {
                 </div>
 
                 <div className="flex justify-center items-center bg-white mt-5 rounded-lg shadow-lg p-8 max-w-lg">
-                            {employeeList.length > 0 ? <PieChart data={jobTypeCounts} /> : ""}
+                            {employeeList.length > 0 ?
+                            <div>
+                                <p>Employees under Supervision</p>
+                            <PieChart data={jobTypeCounts} /> 
+                            </div>
+                            : ""}
                         </div>
                 
             </div>

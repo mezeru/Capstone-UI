@@ -125,7 +125,7 @@ export const HR = () => {
                         <div className="flex flex-row justify-center items-center max-w-md bg-white rounded-lg p-5">
                             <PieChart data={ {
                                 Manager: count?.managerCount,
-                                Empployee: count?.employeeCount
+                                Employee: count?.employeeCount
 
                             } } />
 

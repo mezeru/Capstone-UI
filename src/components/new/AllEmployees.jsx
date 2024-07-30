@@ -6,7 +6,7 @@ import { Dialog } from 'primereact/dialog';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import { HrNav } from "./HrNav";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom"; 
 
 export const AllEmployees = () => {
     const [employees, setEmployees] = useState([]);
@@ -16,7 +16,7 @@ export const AllEmployees = () => {
     const [visible, setVisible] = useState(false);
     const [globalFilter, setGlobalFilter] = useState("");
 
-    const navigate = useNavigate(); // Initialize useNavigate
+    const navigate = useNavigate(); 
 
     useEffect(() => {
         const getAllEmployees = async () => {
@@ -44,7 +44,7 @@ export const AllEmployees = () => {
     const handleEmployeeClick = (employee) => {
         setSelectedEmployee(employee);
         setSelectedManager(employee.manager.id);
-        setVisible(true); // Show the dialog
+        setVisible(true);
     };
 
     const getAllEmployees = async () => {
@@ -66,9 +66,9 @@ export const AllEmployees = () => {
                 },
             });
             alert("Employee reassigned successfully!");
-            setSelectedEmployee(null);  // Reset the form
+            setSelectedEmployee(null);   
             getAllEmployees();
-            setVisible(false);  // Hide the dialog
+            setVisible(false);  
         } catch (error) {
             console.error("Error reassigning employee:", error);
             alert("Error reassigning employee.");
@@ -76,8 +76,28 @@ export const AllEmployees = () => {
     };
 
     const handleEditClick = (employee) => {
-        navigate(`/employee/edit/${employee.id}`); // Navigate to the edit employee page
+        navigate(`/employee/edit/${employee.id}`); 
     };
+
+    const handleDeleteClick = async(id) => {
+        
+        try{
+            await axiosDB.delete(`/Employee/deleteEmployee/${id}`,{
+                headers:{
+                    "Authorization": "Basic "+localStorage.getItem("token")
+                }
+            });
+
+            alert("Employee Deleted");
+            getAllEmployees();
+        }
+        catch(e){
+            console.log(e);
+        }
+
+        
+
+    }
 
     return (
         <>
@@ -99,9 +119,10 @@ export const AllEmployees = () => {
                     <Column className="border" field="manager.name" header="Manager" body={(rowData) => <div className="text-md leading-5">{rowData.manager.name}</div>} />
                     <Column className="border" field="salary" header="Salary" body={(rowData) => <div className="text-md leading-5">${rowData.salary}</div>} />
                     <Column className="border flex justify-center items-center" body={(rowData) => (
-                        <div className="flex space-x-2">
-                            <Button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" label="Reassign" icon="pi pi-pencil" onClick={() => handleEmployeeClick(rowData)} />
-                            <Button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" label="Edit" icon="pi pi-pencil" onClick={() => handleEditClick(rowData)} />
+                        <div className="flex flex-row justify-evenly">
+                            <Button className="bg-blue-500 hover:bg-blue-700 text-white  py-2 px-4 rounded m-2" icon="pi pi-pencil" onClick={() => handleEmployeeClick(rowData)} >Reassign</Button>
+                            <Button className="bg-green-500 hover:bg-green-700 text-white  py-2 px-4 rounded m-2" icon="pi pi-pencil" onClick={() => handleEditClick(rowData)} >Edit</Button>
+                            <Button className="bg-red-500 hover:bg-red-700 text-white py-2 px-4 rounded m-2" icon="pi pi-pencil" onClick={() => handleDeleteClick(rowData.id)} >Delete</Button>
                         </div>
                     )} header="Actions" />
                 </DataTable>
