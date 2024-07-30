@@ -5,6 +5,7 @@ import { Column } from 'primereact/column';
 import { Dialog } from 'primereact/dialog';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
+import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 import { HrNav } from "./HrNav";
 import { useNavigate } from "react-router-dom"; 
 
@@ -15,6 +16,7 @@ export const AllEmployees = () => {
     const [selectedManager, setSelectedManager] = useState("");
     const [visible, setVisible] = useState(false);
     const [globalFilter, setGlobalFilter] = useState("");
+    const [deleteId, setDeleteId] = useState(null);
 
     const navigate = useNavigate(); 
 
@@ -79,25 +81,31 @@ export const AllEmployees = () => {
         navigate(`/employee/edit/${employee.id}`); 
     };
 
-    const handleDeleteClick = async(id) => {
-        
-        try{
-            await axiosDB.delete(`/Employee/deleteEmployee/${id}`,{
-                headers:{
-                    "Authorization": "Basic "+localStorage.getItem("token")
-                }
+    const handleDeleteClick = (id) => {
+        setDeleteId(id);
+        confirmDialog({
+            message: 'Are you sure you want to delete this employee?',
+            header: 'Confirmation',
+            icon: 'pi pi-exclamation-triangle',
+            accept: handleDelete,
+            reject: () => setDeleteId(null),
+        });
+    };
+
+    const handleDelete = async () => {
+        try {
+            await axiosDB.delete(`/Employee/deleteEmployee/${deleteId}`, {
+                headers: {
+                    'Authorization': 'Basic ' + localStorage.getItem('token'),
+                },
             });
 
-            alert("Employee Deleted");
+            alert('Employee Deleted');
             getAllEmployees();
-        }
-        catch(e){
+        } catch (e) {
             console.log(e);
         }
-
-        
-
-    }
+    };
 
     return (
         <>
@@ -112,7 +120,6 @@ export const AllEmployees = () => {
                     <InputText className="w-full border bg-gray-200 border-gray-700 focus:bg-white focus:border-blue-600 px-2 py-2 mt-2" type="search" value={globalFilter} onChange={(e) => setGlobalFilter(e.target.value)} placeholder="Search by name or job type" />
                 </div>
 
-                
                 <DataTable value={employees} paginator rows={10} rowsPerPageOptions={[5, 10, 25, 50]} stripedRows globalFilter={globalFilter} tableStyle={{ minWidth: '50rem' }}>
                     <Column className="border" field="name" header="Employee" body={(rowData) => <div className="text-lg leading-5">{rowData.name}</div>} />
                     <Column className="border" field="jobtype" header="Job Type" body={(rowData) => <div className="capitalize text-md leading-5">{String(rowData.jobtype).replace("_", " ")}</div>} />
@@ -120,15 +127,13 @@ export const AllEmployees = () => {
                     <Column className="border" field="salary" header="Salary" body={(rowData) => <div className="text-md leading-5">${rowData.salary}</div>} />
                     <Column className="border flex justify-center items-center" body={(rowData) => (
                         <div className="flex flex-row justify-evenly">
-                            <Button className="bg-blue-500 hover:bg-blue-700 text-white  py-2 px-4 rounded m-2" icon="pi pi-pencil" onClick={() => handleEmployeeClick(rowData)} >Reassign</Button>
-                            <Button className="bg-green-500 hover:bg-green-700 text-white  py-2 px-4 rounded m-2" icon="pi pi-pencil" onClick={() => handleEditClick(rowData)} >Edit</Button>
-                            <Button className="bg-red-500 hover:bg-red-700 text-white py-2 px-4 rounded m-2" icon="pi pi-pencil" onClick={() => handleDeleteClick(rowData.id)} >Delete</Button>
+                            <Button className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded m-2" icon="pi pi-pencil" onClick={() => handleEmployeeClick(rowData)}>Reassign</Button>
+                            <Button className="bg-green-500 hover:bg-green-700 text-white py-2 px-4 rounded m-2" icon="pi pi-pencil" onClick={() => handleEditClick(rowData)}>Edit</Button>
+                            <Button className="bg-red-500 hover:bg-red-700 text-white py-2 px-4 rounded m-2" icon="pi pi-trash" onClick={() => handleDeleteClick(rowData.id)}>Delete</Button>
                         </div>
                     )} header="Actions" />
                 </DataTable>
-                
             </div>
-
             }
 
             <Dialog header="Reassign Employee To Manager" visible={visible} style={{ width: '50vw' }} onHide={() => setVisible(false)}>
@@ -182,6 +187,8 @@ export const AllEmployees = () => {
                     </div>
                 )}
             </Dialog>
+
+            <ConfirmDialog />
         </div>
         </>
     );
